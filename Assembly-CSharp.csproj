@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{32C3BDE6-E125-3128-82C1-25D0441455A3}</ProjectGuid>
+    <ProjectGuid>{98F808C1-2652-024B-A266-9ACFE2E411E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,10 +53,23 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraController.cs" />
-    <Compile Include="Assets\PlayerEventManager.cs" />
-    <Compile Include="Assets\PlayerMovement.cs" />
-    <Compile Include="Assets\PlayerStats.cs" />
+    <Compile Include="Assets\Player\Movement\PlayerMovement.cs" />
+    <Compile Include="Assets\Items\Interactable.cs" />
+    <Compile Include="Assets\Items\Item.cs" />
+    <Compile Include="Assets\Items\ItemPickUp.cs" />
+    <Compile Include="Assets\UI\Inventory\InventorySlot.cs" />
+    <Compile Include="Assets\UI\UIManager.cs" />
+    <Compile Include="Assets\Player\PlayerLookRay.cs" />
+    <Compile Include="Assets\UI\Inventory\PlayerInventory.cs" />
+    <Compile Include="Assets\Items\ItemInstance.cs" />
+    <Compile Include="Assets\Camera\CameraController.cs" />
+    <Compile Include="Assets\UI\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Player\PlayerStats.cs" />
+    <Compile Include="Assets\Player\PlayerInputManager.cs" />
+    <Compile Include="Assets\Items\Equipment.cs" />
+    <Compile Include="Assets\Items\Weapon.cs" />
+    <Compile Include="Assets\Items\Armor.cs" />
+    <Compile Include="Assets\Items\Tool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -646,6 +659,9 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
