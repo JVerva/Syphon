@@ -7,17 +7,23 @@ public class UIManager : MonoBehaviour
 {
     PlayerInputManager playerInputManager;
     CameraController cameraController;
-    GameObject inventoryTab;
+    [SerializeField]GameObject inventoryTab;
+    [Space]
+    [SerializeField]private Vector2 cameraOffset;
+    [SerializeField]private float cameraDist;
+    private Vector2 lastCameraOffset;
+    private float lastCameraDist;
 
     private void OnValidate()
     {
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         cameraController = FindObjectOfType<CameraController>();
-        inventoryTab = GetComponentInChildren<PlayerInventory>().gameObject;
     }
 
     private void Awake()
     {
+        lastCameraOffset = cameraController.offset;
+        lastCameraDist = cameraController.dist;
         inventoryTab.SetActive(false);
         ToggleCursor(false);
         playerInputManager.inventoryToggle += ToggleInventory;
@@ -28,11 +34,17 @@ public class UIManager : MonoBehaviour
         if (inventoryTab.activeSelf)
         {
             inventoryTab.SetActive(false);
+            cameraController.offset = lastCameraOffset;
+            cameraController.dist = lastCameraDist;
             ToggleCursor(false);
         }
         else
         {
             inventoryTab.SetActive(true);
+            lastCameraOffset = cameraController.offset;
+            lastCameraDist = cameraController.dist;
+            cameraController.offset = cameraOffset;
+            cameraController.dist = -cameraDist;
             ToggleCursor(true);
         }
 

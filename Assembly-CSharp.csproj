@@ -53,23 +53,21 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Player\Movement\PlayerMovement.cs" />
-    <Compile Include="Assets\Items\Interactable.cs" />
-    <Compile Include="Assets\Items\Item.cs" />
-    <Compile Include="Assets\Items\ItemPickUp.cs" />
-    <Compile Include="Assets\UI\Inventory\InventorySlot.cs" />
+    <Compile Include="Assets\Player\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Items\Scripts\Item.cs" />
+    <Compile Include="Assets\Player\Scripts\InteractRay.cs" />
+    <Compile Include="Assets\Items\Scripts\EquipmentSlot.cs" />
     <Compile Include="Assets\UI\UIManager.cs" />
-    <Compile Include="Assets\Player\PlayerLookRay.cs" />
-    <Compile Include="Assets\UI\Inventory\PlayerInventory.cs" />
-    <Compile Include="Assets\Items\ItemInstance.cs" />
+    <Compile Include="Assets\Items\Scripts\InventorySlot.cs" />
+    <Compile Include="Assets\Items\Scripts\Inventory.cs" />
+    <Compile Include="Assets\Items\Scripts\ItemPickUp.cs" />
+    <Compile Include="Assets\Items\Scripts\ItemInstance.cs" />
     <Compile Include="Assets\Camera\CameraController.cs" />
-    <Compile Include="Assets\UI\Inventory\Inventory.cs" />
-    <Compile Include="Assets\Player\PlayerStats.cs" />
-    <Compile Include="Assets\Player\PlayerInputManager.cs" />
-    <Compile Include="Assets\Items\Equipment.cs" />
-    <Compile Include="Assets\Items\Weapon.cs" />
-    <Compile Include="Assets\Items\Armor.cs" />
-    <Compile Include="Assets\Items\Tool.cs" />
+    <Compile Include="Assets\Items\Scripts\Interactable.cs" />
+    <Compile Include="Assets\Items\Scripts\Equipment.cs" />
+    <Compile Include="Assets\Player\Scripts\PlayerStats.cs" />
+    <Compile Include="Assets\Player\Scripts\PlayerInputManager.cs" />
+    <Compile Include="Assets\Items\Scripts\EquipmentInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
