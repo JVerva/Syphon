@@ -56,6 +56,7 @@ public class CameraController : MonoBehaviour
         dist += scrollStepDist * scroll;
         dist = Mathf.Clamp(dist, -maxDist, -minDist);
         transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0, 0, dist),moveAccelaration*Time.deltaTime);
+        CheckCollision();
     }
 
     //check if there are collisions between player and camera, puting camera at collision point 

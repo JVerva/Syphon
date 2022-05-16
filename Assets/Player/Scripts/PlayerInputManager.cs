@@ -12,7 +12,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private KeyCode Run;
     [SerializeField] private KeyCode Jump;
     [SerializeField] private KeyCode Inventory;
-    [SerializeField] private KeyCode Interact;
+    [SerializeField] public KeyCode Interact;
 
     private Vector2 moveInput;
 

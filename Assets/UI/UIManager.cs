@@ -2,15 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    PlayerInputManager playerInputManager;
-    CameraController cameraController;
-    [SerializeField]GameObject inventoryTab;
+    private PlayerInputManager playerInputManager;
+    private CameraController cameraController;
+    private InventoryManager inventoryManager;
     [Space]
-    [SerializeField]private Vector2 cameraOffset;
-    [SerializeField]private float cameraDist;
+    [SerializeField] private Vector2 cameraOffset;
+    [SerializeField] private float cameraDist;
     private Vector2 lastCameraOffset;
     private float lastCameraDist;
 
@@ -18,29 +19,31 @@ public class UIManager : MonoBehaviour
     {
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         cameraController = FindObjectOfType<CameraController>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     private void Awake()
     {
         lastCameraOffset = cameraController.offset;
         lastCameraDist = cameraController.dist;
-        inventoryTab.SetActive(false);
+        inventoryManager.gameObject.SetActive(false);
         ToggleCursor(false);
         playerInputManager.inventoryToggle += ToggleInventory;
     }
 
     private void ToggleInventory()
     {
-        if (inventoryTab.activeSelf)
+        if (inventoryManager.gameObject.activeSelf)
         {
-            inventoryTab.SetActive(false);
+            inventoryManager.UnselectSlot();
+            inventoryManager.gameObject.SetActive(false);
             cameraController.offset = lastCameraOffset;
             cameraController.dist = lastCameraDist;
             ToggleCursor(false);
         }
         else
         {
-            inventoryTab.SetActive(true);
+            inventoryManager.gameObject.SetActive(true);
             lastCameraOffset = cameraController.offset;
             lastCameraDist = cameraController.dist;
             cameraController.offset = cameraOffset;

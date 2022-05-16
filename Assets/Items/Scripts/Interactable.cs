@@ -6,11 +6,7 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] private float sizeRatio=1;
     private Collider interactCollider;
-
-    private void Start()
-    {
-        interactCollider = DuplicateCollider();
-    }
+    public string interactionText;
 
     public virtual void Interact()
     {
@@ -18,7 +14,7 @@ public class Interactable : MonoBehaviour
     }
 
     //check wich collider the object has and create its interact collider by duplicating it and ratioing its size to intended
-    private Collider DuplicateCollider()
+    protected Collider DuplicateCollider()
     {
         Collider existingCoillider = gameObject.GetComponent<Collider>();
         if (existingCoillider is BoxCollider)

@@ -15,4 +15,6 @@ public class PlayerStats : MonoBehaviour
     public float arealControl = 0.2f;
     public float turnSpeed = 2;
     public float interactionReach = 2;
+    public float tiltFactor = 1 / 2;
+    public float tiltSpeed = 3;
 }

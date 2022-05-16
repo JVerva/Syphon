@@ -8,9 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float airResistance;
     [SerializeField] private float maxWalkAngle;
     [SerializeField] private float g;
+    [SerializeField] private Transform body;
     [Space]
     [SerializeField] private bool debug;
-    private CharacterController characterController;
+    public CharacterController characterController;
     private PlayerStats playerStats;
     private PlayerInputManager playerInputManager;
     private Camera mainCamera;
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Vector2 moveInput;
     private Vector3 pushDown;
-    private Vector3 velocity;
+    public Vector3 velocity;
     private Vector3 lastVelocity;
     private Vector3 accelerationVector;
     private Vector3 gravityDirection;
@@ -26,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 targetGravityVelocity;
     private Vector2 aerialMoveVelocity;
     private bool isJumping;
+    public bool isGrounded;
+    public bool isSliding;
     private float accelaration;
     private float groundAngle;
     private float gravityAcceleration;
@@ -69,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        isSliding = false;
+        isGrounded = characterController.isGrounded;
         targetMoveSpeed = moveSpeed;
         GetGroundAngle();
         GetMovementDirection();
@@ -81,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
         }
         //move the player
         characterController.Move((velocity + pushDown) * Time.deltaTime);
+        accelerationVector = (characterController.velocity - lastVelocity) / Time.deltaTime;
+        lastVelocity = characterController.velocity;
         RotateCharacter();
     }
 
@@ -141,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                targetVelocity = moveDirection * targetMoveSpeed * Mathf.Pow(Mathf.Cos(groundAngle/maxWalkAngle),2);
+                targetVelocity = moveDirection * targetMoveSpeed * Mathf.Pow(Mathf.Cos(groundAngle/maxWalkAngle), ( 2*Vector3.Dot(moveDirection,new Vector3(-groundNormal.x, 0, -groundNormal.z).normalized)));
             }
         }
         //determines if the player what acceleration and target velocity the player will get based on the ground slope and if its accelerationg or decelarating
@@ -149,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         {
             accelaration = gravityAcceleration;
             targetVelocity = targetGravityVelocity;
+            isSliding = true;
         }
         else
         {
@@ -158,8 +166,6 @@ public class PlayerMovement : MonoBehaviour
                 accelaration = playerStats.stopAccelaration;
         }
         velocity = Vector3.Lerp(velocity, targetVelocity, accelaration/(velocity-targetVelocity).magnitude * Time.deltaTime);
-        accelerationVector = (velocity - lastVelocity) / Time.deltaTime;
-        lastVelocity = velocity;
         if (isJumping)
         {
             velocity = new Vector3(velocity.x, jumpVelocity, velocity.z);
@@ -215,17 +221,17 @@ public class PlayerMovement : MonoBehaviour
         {
             control = playerStats.arealControl;
         }
-        float Angle = Vector3.Angle(transform.forward, new Vector3(moveDirection.x,0,moveDirection.z));
-        if (Vector3.Cross(transform.forward, new Vector3(moveDirection.x, 0, moveDirection.z)).y < 0)
-        Angle *= -1;
-        Vector3 DeltaYRotation = new Vector3(0, Angle, 0) * Time.deltaTime * playerStats.turnSpeed*control;
-        characterController.transform.Rotate(DeltaYRotation);
-        //body.transform.rotation =Quaternion.Lerp(body.transform.rotation, Quaternion.Euler(new Vector3(accelerationVector.z, 0, -accelerationVector.x)),Time.deltaTime);
+        transform.forward = Vector3.Slerp(transform.forward, new Vector3(moveDirection.x, 0, moveDirection.z).normalized,playerStats.turnSpeed*Time.deltaTime);
+ 
+        accelerationVector = body.transform.InverseTransformDirection(accelerationVector);
+        body.transform.rotation = Quaternion.Euler(body.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, body.transform.rotation.eulerAngles.z);
+        body.transform.rotation = Quaternion.Lerp(body.transform.rotation, Quaternion.Euler(new Vector3(accelerationVector.z*playerStats.tiltFactor, body.transform.rotation.eulerAngles.y, -accelerationVector.x*playerStats.tiltFactor)), playerStats.tiltSpeed * Time.deltaTime);
     }
     //draw debug lines 
     private void DrawDebugLines()
     {
-        Debug.DrawLine(transform.position + Vector3.up, transform.position + targetVelocity*2 + Vector3.up, Color.green, 0);
+        //Debug.DrawLine(transform.position + Vector3.up, transform.position + targetVelocity*2 + Vector3.up, Color.green, 0);
+        Debug.DrawLine(transform.position + Vector3.up, transform.position + velocity*2 + Vector3.up, Color.green, 0);
         Debug.DrawLine(transform.position + Vector3.up, transform.position + targetGravityVelocity/4 + Vector3.up, Color.red, 0);
     }
 }

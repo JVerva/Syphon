@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractRay : MonoBehaviour
 {
     [SerializeField] private Transform LookTarget;
     [SerializeField] private bool debug;
-    PlayerInputManager playerInputManager;
-    RaycastHit hitInfo;
-    Interactable interactable;
-    PlayerStats playerStats;
+    [SerializeField] private Text interactionText;
+    private PlayerInputManager playerInputManager;
+    private RaycastHit hitInfo;
+    private Interactable interactable;
+    private PlayerStats playerStats;
 
     private void Awake()
     {
@@ -27,11 +29,16 @@ public class InteractRay : MonoBehaviour
         {
             //if so, get it
             interactable = hitInfo.collider.gameObject.GetComponent<Interactable>();
+            if(interactable)
+                interactionText.text = "[" + playerInputManager.Interact +"] " + interactable.interactionText;
+            else
+                interactionText.text = null;
         }
         else
         {
             //if we are not hitting anything set interactable to null
             interactable = null;
+            interactionText.text = null;
         }
         if (debug)
             Debug.DrawLine(LookTarget.transform.position, LookTarget.transform.position + gameObject.transform.forward * playerStats.interactionReach, Color.cyan);
