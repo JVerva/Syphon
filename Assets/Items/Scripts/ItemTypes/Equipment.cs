@@ -6,4 +6,5 @@ using UnityEngine;
 public class Equipment : Item
 {
     public float maxDurability;
+    public SkinnedMeshRenderer skinnedMeshRenderer;
 }

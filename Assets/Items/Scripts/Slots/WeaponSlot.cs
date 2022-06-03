@@ -18,10 +18,12 @@ public class WeaponSlot : EquipmentSlot
         }else if(((Weapon)item).weaponType == WeaponType.OffHand && hand == Hand.MainHand)
         {
             Debug.Log("Item is not a main hand weapon");
+            Warning.Display("Item is not a main hand weapon");
             return false;
         }else if((((Weapon)item).weaponType == WeaponType.TwoHanded || ((Weapon)item).weaponType == WeaponType.OneHanded )&& hand == Hand.OffHand )
         {
             Debug.Log("Item is not an off hand weapon");
+            Warning.Display("Item is not an off hand weapon");
             return false;
         }
         else
@@ -31,7 +33,7 @@ public class WeaponSlot : EquipmentSlot
             else if (((Weapon)item).weaponType == WeaponType.OffHand)
                 OnOffHandedWeaponAdded?.Invoke(this);
             base.AddItem(item, ref quantity, durability = 1);
-            Equip(item);
+            Equip((Equipment)item);
             return true;
         }
     }

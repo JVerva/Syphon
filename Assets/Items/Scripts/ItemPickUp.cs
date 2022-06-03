@@ -21,7 +21,7 @@ public class ItemPickUp : Interactable
         interactionText = "Pick Up " + item.name;
         if (quantity > 1)
         {
-           interactionText+= " x" + quantity.ToString();
+           interactionText += " x" + quantity.ToString();
         }
     }
 
@@ -31,7 +31,7 @@ public class ItemPickUp : Interactable
         inventory.AddItem(item, ref quantity, durability);
         if (quantity == 0)
             Destroy();
-        Debug.Log("Try to pick up Item");
+        Debug.Log("Pick up Item");
     }
 
     //destroy the game object

@@ -16,12 +16,13 @@ public class ConsumableSlot : EquipmentSlot
         else if (((Consumable)item).consumableType != consumableType)
         {
             Debug.Log("Item is not a " + consumableType);
+            Warning.Display("Item is not a " + consumableType);
             return false;
         }
         else
         {
             base.AddItem(item, ref quantity, durability);
-            Equip(item);
+            Equip((Equipment)item);
             return true;
         }
     }

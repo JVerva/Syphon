@@ -18,9 +18,11 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         selectedSlot = null;
         inventory.OnLeftClickEvent += SelectItem;
         equipmentPanel.OnLeftClickEvent += SelectItem;
+        inventory.OnLeftClickEvent += SelectItem;
+        equipmentPanel.OnLeftClickEvent += SelectItem;
     }
 
-    //select item if none is, swap items when there allready is one selected
+    //select item if none is, else swap items
     private void SelectItem(InventorySlot slot)
     {
         if (selectedSlot == null)
@@ -57,14 +59,17 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
         //if the second slot is empty
         if (slot.isEmpty)
         {
-            slot.AddItem(selectedSlot.Item, ref quantity, selectedSlot.Durability);
-            selectedSlot.Quantity = quantity;
+            if (slot.AddItem(selectedSlot.Item, ref quantity, selectedSlot.Durability))
+            {
+                selectedSlot.RemoveItem();
+            }
             UnselectSlot();
             return;
         }
         //if the second slot has an item in it
         else
         {
+            //if the items are the same
             if (slot.Item == selectedSlot.Item)
             {
                 slot.AddItem(selectedSlot.Item, ref quantity, selectedSlot.Durability);
@@ -78,8 +83,8 @@ public class InventoryManager : MonoBehaviour, IPointerClickHandler
                 int tempQuantity = quantity;
                 int tempDurability = selectedSlot.Durability;
                 quantity = slot.Quantity;
-                selectedSlot.AddItem(slot.Item, ref quantity, slot.Durability);
-                slot.AddItem(tempItem, ref tempQuantity, tempDurability);
+                if(selectedSlot.AddItem(slot.Item, ref quantity, slot.Durability))
+                    slot.AddItem(tempItem, ref tempQuantity, tempDurability);
                 UnselectSlot();
                 return;
             }

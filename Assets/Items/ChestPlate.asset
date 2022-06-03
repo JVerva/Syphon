@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae04267f284a67143ab399fe5d30bb1f, type: 3}
+  m_Name: ChestPlate
+  m_EditorClassIdentifier: 
+  name: TestChestPlate
+  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  meshRenderer: {fileID: -7511558181221131132, guid: 628ffa40c533d1146aefa959b21269f9, type: 3}
+  meshFilter: {fileID: -5754084199372789682, guid: 628ffa40c533d1146aefa959b21269f9, type: 3}
+  itemInfo: 
+  stackSize: 1
+  weight: 0
+  maxDurability: 1
+  skinnedMeshRenderer: {fileID: 4820522499822036216, guid: 7f4975768164e524d9c0d6b556e84b5c, type: 3}
+  armourType: 1
+  equipedWeight: 14

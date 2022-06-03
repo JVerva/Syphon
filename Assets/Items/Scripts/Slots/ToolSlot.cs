@@ -17,12 +17,13 @@ public class ToolSlot : EquipmentSlot
         else if (((Tool)item).toolType != toolType)
         {
             Debug.Log("Item is not a " + toolType);
+            Warning.Display("Item is not a " + toolType);
             return false;
         }
         else
         {
             base.AddItem(item, ref quantity, durability);
-            Equip(item);
+            Equip((Equipment)item);
             return true;
         }
     }

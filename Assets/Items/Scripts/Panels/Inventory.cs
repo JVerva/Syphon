@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private string inventoryName;
     public InventorySlot[] Slots;
     public bool isFull;
     public event Action<InventorySlot> OnLeftClickEvent;
@@ -24,13 +23,12 @@ public class Inventory : MonoBehaviour
         OnLeftClickEvent?.Invoke(obj);
     }
 
-    //Add item to the inventory, finds the slots wich have the same item filling them up before occupying a new one
+    //Add item to the inventory, finds the slots wich have the same item, filling them up before occupying a new one
     public bool AddItem(Item item,ref int quantity,int durability = 1)
     {
         List<int> indexOrder = GetSlotInsertOrder(item);
         for(int i =0; i< indexOrder.Count && quantity>0; i++)
         {
-            Debug.Log(indexOrder[i]);
             if (indexOrder[i] == -1)
             {
                 Warning.Display("Inventory is Full");
