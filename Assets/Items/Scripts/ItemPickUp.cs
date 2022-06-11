@@ -8,11 +8,11 @@ public class ItemPickUp : Interactable
     [SerializeField] private Item item;
     [SerializeField] private int quantity;
     [SerializeField] private int durability;
-    private Inventory inventory;
+    private InventoryPanel inventory;
 
     private void OnValidate()
     {
-        inventory = FindObjectOfType<Inventory>();
+        inventory = FindObjectOfType<InventoryPanel>();
     }
 
     private void Start()

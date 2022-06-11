@@ -8,7 +8,7 @@ public class WeaponPanel : MonoBehaviour
     public WeaponSlot[] slots;
     public WeaponSlot[] offHandSlots;
     public WeaponSlot[] mainHandSlots;
-    private Inventory playerInventory;
+    private InventoryPanel playerInventory;
 
     public event Action<InventorySlot> OnLeftClickEvent;
     public event Action<InventorySlot> DropItemEvent;
@@ -40,7 +40,7 @@ public class WeaponPanel : MonoBehaviour
             ((WeaponSlot)slot).OnTwoHandedWeaponAdded += EquipTwoHanded;
             ((WeaponSlot)slot).OnOffHandedWeaponAdded += EquipOffHanded;
         }
-        playerInventory = FindObjectOfType<Inventory>();
+        playerInventory = FindObjectOfType<InventoryPanel>();
     }
 
     //check if there is an off hand weapon equipped, if so try to add it to the inventory, if that fails call the drop event and drop the item

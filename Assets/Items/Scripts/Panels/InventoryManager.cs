@@ -7,17 +7,15 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour, IPointerClickHandler
 {
-    private Inventory inventory;
+    private InventoryPanel inventory;
     private EquipmentPanel equipmentPanel;
     private InventorySlot selectedSlot;
 
     private void Awake()
     {
-        inventory = GetComponentInChildren<Inventory>();
+        inventory = GetComponentInChildren<InventoryPanel>();
         equipmentPanel = GetComponentInChildren<EquipmentPanel>();
         selectedSlot = null;
-        inventory.OnLeftClickEvent += SelectItem;
-        equipmentPanel.OnLeftClickEvent += SelectItem;
         inventory.OnLeftClickEvent += SelectItem;
         equipmentPanel.OnLeftClickEvent += SelectItem;
     }

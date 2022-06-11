@@ -65,7 +65,7 @@
     <Compile Include="Assets\Player\Scripts\AnimationController.cs" />
     <Compile Include="Assets\Items\Scripts\Slots\InventorySlot.cs" />
     <Compile Include="Assets\Items\Scripts\Panels\EquipmentPanel.cs" />
-    <Compile Include="Assets\Items\Scripts\Panels\Inventory.cs" />
+    <Compile Include="Assets\Items\Scripts\Panels\InventoryPanel.cs" />
     <Compile Include="Assets\Items\Scripts\ItemPickUp.cs" />
     <Compile Include="Assets\Camera\CameraController.cs" />
     <Compile Include="Assets\Items\Scripts\Slots\ToolSlot.cs" />
