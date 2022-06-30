@@ -32,23 +32,20 @@ public class PlayerInputManager : MonoBehaviour
     private void Update()
     {
         //search for bind input and set off the events when apropriate
-        if (Input.GetKeyDown(Inventory))
-        {
+        if (Input.GetKeyDown(Inventory)) {
             inventoryToggle?.Invoke();
         }
         GetMoveInput();
         if (Input.GetKeyDown(Run)) {
                 runToglle?.Invoke(true);
         }
-        if (Input.GetKeyUp(Run))
-        {
+        if (Input.GetKeyUp(Run)){
             runToglle?.Invoke(false);
         }
         if (Input.GetKeyDown(Jump)) {
                 jumpStart?.Invoke();
         }
-        if (Input.GetKeyDown(Interact))
-        {
+        if (Input.GetKeyDown(Interact)) {
             interact?.Invoke();
         }
     }

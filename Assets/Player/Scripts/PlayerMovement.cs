@@ -103,8 +103,7 @@ public class PlayerMovement : MonoBehaviour
         moveInput = input;
     }
 
-
-    //gets the movement direction based on input and camera direction;
+    //gets the movement direction based on input and camera direction
     private void GetMovementDirection()
     {
         Vector3 forwardDirection = mainCamera.transform.forward;
@@ -113,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
     }
 
+    //gets the final velocity from wich to move the player
     private void GetVelocity()
     {
         //when free falling, applies garvity, air resistance, and a bit of player movement
@@ -173,7 +173,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     //gets the gravity velocity, depends on slopes
     private void GetGravityVelocity()
     {
@@ -227,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
         body.transform.rotation = Quaternion.Euler(body.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, body.transform.rotation.eulerAngles.z);
         body.transform.rotation = Quaternion.Lerp(body.transform.rotation, Quaternion.Euler(new Vector3(accelerationVector.z*playerStats.tiltFactor, body.transform.rotation.eulerAngles.y, -accelerationVector.x*playerStats.tiltFactor)), playerStats.tiltSpeed * Time.deltaTime);
     }
+
     //draw debug lines 
     private void DrawDebugLines()
     {
