@@ -13,7 +13,6 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private float walkAnimSpeed;
     [SerializeField] private float runAnimSpeed;
     private PlayerMovement playerMovementScript;
-    private PlayerStats playerStats;
     private float strideLength;
     private float strideFrequency;
     private float radius;
@@ -22,11 +21,10 @@ public class AnimationController : MonoBehaviour
 
     private void Awake()
     {
-        playerStats = GetComponentInParent<PlayerStats>();
         playerMovementScript = GetComponentInParent<PlayerMovement>();
-        walkAnimTreshHold = playerStats.walkSpeed / playerStats.runSpeed;
-        walkAnimSpeed = (playerStats.walkSpeed / walkStepDist) / animStepsPSecond;
-        runAnimSpeed = (playerStats.runSpeed / runStepDist) / animStepsPSecond;
+        walkAnimTreshHold = PlayerStats.walkSpeed / PlayerStats.runSpeed;
+        walkAnimSpeed = (PlayerStats.walkSpeed / walkStepDist) / animStepsPSecond;
+        runAnimSpeed = (PlayerStats.runSpeed / runStepDist) / animStepsPSecond;
     }
 
     //Displays 4 rays perpenducular to each other in the forward plane
@@ -40,7 +38,7 @@ public class AnimationController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("speed", speed / playerStats.runSpeed);
+        animator.SetFloat("speed", speed / PlayerStats.runSpeed);
         animator.SetBool("isGrounded", playerMovementScript.isGrounded);
         animator.SetBool("isSliding", playerMovementScript.isSliding);
     }
@@ -48,10 +46,10 @@ public class AnimationController : MonoBehaviour
     //sets stride length and stride frequency based on speed
     private void GetStride()
     {
-        if (speed <= playerStats.walkSpeed)
-            strideLength = speed * walkStepDist / playerStats.walkSpeed;
+        if (speed <= PlayerStats.walkSpeed)
+            strideLength = speed * walkStepDist / PlayerStats.walkSpeed;
         else
-            strideLength = speed * (runStepDist - walkStepDist)/(playerStats.runSpeed - playerStats.walkSpeed)+(walkStepDist -((runStepDist - walkStepDist)/((playerStats.runSpeed - playerStats.walkSpeed) * playerStats.walkSpeed)));
+            strideLength = speed * (runStepDist - walkStepDist)/(PlayerStats.runSpeed - PlayerStats.walkSpeed)+(walkStepDist -((runStepDist - walkStepDist)/((PlayerStats.runSpeed - PlayerStats.walkSpeed) * PlayerStats.walkSpeed)));
         strideFrequency = speed/strideLength;
     }
 }

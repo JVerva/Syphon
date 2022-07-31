@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "7b26e387-4b4f-41a3-ad7a-ef2f630bfd8e",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -20,7 +20,7 @@
                     "id": "10cdd4cc-6b1c-4ac0-ae05-03364906956f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -40,33 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "1d26f1a0-cd18-4736-aa6d-9bd00d2492de",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "b3df3d75-4e6f-4173-a8dd-3dc926016701",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Block",
-                    "type": "Button",
-                    "id": "b7681ecb-cd31-424e-8461-b778f887aa06",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -82,7 +55,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "WASD",
                     "id": "3a31a702-6346-4637-b399-d0dab9039ea9",
                     "path": "2DVector",
                     "interactions": "",
@@ -157,21 +130,47 @@
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerCombat",
+            "id": "4732f31c-fc3a-4982-b171-a4900f75e461",
+            "actions": [
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "0e94291d-3269-4bd8-ac72-3a83e2545d6c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "9a8e63e7-90a1-4993-97cd-aee073eea643",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "128056b6-6493-4c9e-80ff-998f9c84d8da",
-                    "path": "<Keyboard>/e",
+                    "id": "670716b4-2a70-43fe-a05f-669d006396cc",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "500722fd-274e-4c13-b65a-a73f8c3e58aa",
+                    "id": "ab155a39-b9e2-4955-8b63-2653dd8843a8",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -179,15 +178,108 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerCamera",
+            "id": "153495dc-7f89-45d0-b843-491c578faa3c",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "PassThrough",
+                    "id": "64e41ebb-298e-46fc-8629-6d6a2b1ff399",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "87a59a83-d1a8-4605-9564-e37f75246d10",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "272ca529-e3bb-44cf-9a36-69b1514869d0",
-                    "path": "<Mouse>/rightButton",
+                    "id": "33378909-e7f5-4e28-8815-887d9f56b642",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Block",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "300345f8-a695-480b-ac9a-51af41b54e41",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "c0f46b66-ee85-4371-b5d3-9ec3652be9ba",
+            "actions": [
+                {
+                    "name": "ToggleInventory",
+                    "type": "Button",
+                    "id": "1fd0490f-1858-4da7-add7-f8eacec1e6d2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8491c5c9-6aa1-4d0f-8151-e1fd5c49e0e5",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Misc",
+            "id": "a78ee27a-0c6b-4248-b37e-587bad6f85fc",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "8a9fb6e1-e1e8-4646-8390-c404bf565cf3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cf7461f8-783a-412e-a33b-1d83160e8a0d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

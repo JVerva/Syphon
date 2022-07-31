@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class PlayerWalkState : PlayerState
 {
-    public PlayerWalkState(PlayerStateMachine context, StateHolder holder, bool isRootState) : base(context, holder, isRootState) { }
+    public PlayerWalkState(PlayerStateMachine context, PlayerStateFactory factory, bool isRootState) : base(context, factory, isRootState) { }
     protected override void CheckSwitchState()
     {
-        throw new System.NotImplementedException();
+        if(!_context.IsMovePressed){
+            SwitchState(_factory.getIdleState());
+        }
+        if(_context.IsRunPressed){
+            SwitchState(_factory.getRunState());
+        }
     }
 
     protected override void EnterState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void ExitState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
 }

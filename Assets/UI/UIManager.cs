@@ -2,52 +2,54 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private PlayerInputManager playerInputManager;
-    private CameraController cameraController;
-    private InventoryManager inventoryManager;
-    [Space]
-    [SerializeField] private Vector2 cameraOffset;
-    [SerializeField] private float cameraDist;
-    private Vector2 lastCameraOffset;
-    private float lastCameraDist;
+
+    [SerializeField] private Vector2 _cameraOffset;
+    [SerializeField] private float _cameraDist;
+    private PlayerInput _playerInput;
+    private CameraController _cameraController;
+    private InventoryManager _inventoryManager;
+    private Vector2 _lastCameraOffset;
+    private float _lastCameraDist;
 
     private void OnValidate()
     {
-        playerInputManager = FindObjectOfType<PlayerInputManager>();
-        cameraController = FindObjectOfType<CameraController>();
-        inventoryManager = FindObjectOfType<InventoryManager>();
+        _cameraController = FindObjectOfType<CameraController>();
+        _inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     private void Awake()
     {
-        lastCameraOffset = cameraController.offset;
-        lastCameraDist = cameraController.dist;
-        inventoryManager.gameObject.SetActive(false);
+        _playerInput = new PlayerInput();
+        _lastCameraOffset = _cameraController.offset;
+        _lastCameraDist = _cameraController.dist;
+        _inventoryManager.gameObject.SetActive(false);
         ToggleCursor(false);
-        playerInputManager.inventoryToggle += ToggleInventory;
+        _playerInput.UI.ToggleInventory.canceled += ToggleInventory;
     }
 
-    private void ToggleInventory()
+    private void ToggleInventory(InputAction.CallbackContext context) 
     {
-        if (inventoryManager.gameObject.activeSelf)
+
+        if (_inventoryManager.gameObject.activeSelf)
         {
-            inventoryManager.UnselectSlot();
-            inventoryManager.gameObject.SetActive(false);
-            cameraController.offset = lastCameraOffset;
-            cameraController.dist = lastCameraDist;
+            _inventoryManager.UnselectSlot();
+            _inventoryManager.gameObject.SetActive(false);
+            _cameraController.offset = _lastCameraOffset;
+            _cameraController.dist = _lastCameraDist;
             ToggleCursor(false);
         }
         else
         {
-            inventoryManager.gameObject.SetActive(true);
-            lastCameraOffset = cameraController.offset;
-            lastCameraDist = cameraController.dist;
-            cameraController.offset = cameraOffset;
-            cameraController.dist = -cameraDist;
+            _inventoryManager.gameObject.SetActive(true);
+            _lastCameraOffset = _cameraController.offset;
+            _lastCameraDist = _cameraController.dist;
+            _cameraController.offset = _cameraOffset;
+            _cameraController.dist = -_cameraDist;
             ToggleCursor(true);
         }
 
@@ -60,14 +62,22 @@ public class UIManager : MonoBehaviour
             //lock cursor to the middle of the screen and make it invisible
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            cameraController.getInput = false;
+            _cameraController.getInput = false;
         }
         else
         {
             //lock cursor to the middle of the screen and make it invisible
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            cameraController.getInput = true;
+            _cameraController.getInput = true;
         }
+    }
+
+    private void OnEnable(){
+        _playerInput.Enable();
+    }
+
+    private void OnDisable(){
+        _playerInput.Disable();
     }
 }

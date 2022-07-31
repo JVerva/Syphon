@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerState
 {
-    public PlayerIdleState(PlayerStateMachine context, StateHolder holder, bool isRootState) : base(context, holder, isRootState) { }
+    public PlayerIdleState(PlayerStateMachine context, PlayerStateFactory factory, bool isRootState) : base(context, factory, isRootState) { }
     protected override void CheckSwitchState()
     {
-        throw new System.NotImplementedException();
+        if(_context.IsMovePressed){
+            SwitchState(_factory.getWalkState());
+        }
     }
 
     protected override void EnterState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void ExitState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     protected override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

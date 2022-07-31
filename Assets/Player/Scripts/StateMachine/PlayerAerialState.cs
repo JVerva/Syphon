@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class PlayerAerialState : PlayerState
 {
-    public PlayerAerialState(PlayerStateMachine context, StateHolder holder, bool isRootState) : base(context, holder, isRootState) { }
+    public PlayerAerialState(PlayerStateMachine context, PlayerStateFactory holder, bool isRootState) : base(context, holder, isRootState) { }
+
+    public PlayerAerialState(PlayerStateMachine context, PlayerStateFactory holder, bool isRootState, Vector3 initialVelocity) : base(context, holder, isRootState) { }
 
     protected override void CheckSwitchState()
     {
-        throw new System.NotImplementedException();
+        if(_context.IsGrounded){
+            SwitchState(_factory.getGroundedState());
+        }
     }
 
     protected override void EnterState()
     {
-        throw new System.NotImplementedException();
+
     }
 
     protected override void ExitState()
     {
-        throw new System.NotImplementedException();
+
     }
 
     protected override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
+        SetSubState(_factory.getIdleState());
     }
 
     protected override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

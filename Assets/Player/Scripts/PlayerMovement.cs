@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [SerializeField] private bool debug;
     public CharacterController characterController;
-    private PlayerStats playerStats;
     private PlayerInputManager playerInputManager;
     private Camera mainCamera;
     private Vector3 groundNormal;
@@ -40,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnValidate()
     {
-        playerStats = FindObjectOfType<PlayerStats>();
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         mainCamera = FindObjectOfType<Camera>();
         characterController = FindObjectOfType<CharacterController>();
@@ -53,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputManager.runToglle += RunToggle;
         playerInputManager.jumpStart += Jump;
         //set default values
-        targetMoveSpeed = playerStats.walkSpeed;
+        targetMoveSpeed = PlayerStats.walkSpeed;
         accelaration = 0f;
         groundNormal = Vector3.zero;
         moveDirection = Vector3.zero;
@@ -65,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         targetVelocity = Vector3.zero;
         aerialMoveVelocity = Vector2.zero;
         groundAngle = 90;
-        moveSpeed = playerStats.walkSpeed;
+        moveSpeed = PlayerStats.walkSpeed;
         jumpVelocity = 0;
         isJumping = false;
     }
@@ -94,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     //when character controller hits something
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-            groundNormal = hit.normal;      
+        groundNormal = hit.normal;      
     }
 
     //listens to Input manager's input change
@@ -120,11 +118,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 horizontalSpeed = Vector2.Lerp(new Vector2(velocity.x-aerialMoveVelocity.x, velocity.z-aerialMoveVelocity.y), Vector2.zero, airResistance / new Vector2(velocity.x, velocity.z).magnitude * Time.deltaTime);
             float verticalSpeed = Mathf.Lerp(velocity.y, -67, g * Time.deltaTime / (velocity.y + 67));
-            targetVelocity = moveDirection * playerStats.walkSpeed * playerStats.arealControl;
+            targetVelocity = moveDirection * PlayerStats.walkSpeed * PlayerStats.arealControl;
             if (targetVelocity.magnitude > aerialMoveVelocity.magnitude)
-                accelaration = playerStats.accelaration;
+                accelaration = PlayerStats.accelaration;
             else
-                accelaration = playerStats.stopAccelaration;
+                accelaration = PlayerStats.stopAccelaration;
             aerialMoveVelocity = Vector2.Lerp(aerialMoveVelocity, new Vector2(targetVelocity.x, targetVelocity.z), accelaration * Time.deltaTime / (aerialMoveVelocity - new Vector2(targetVelocity.x, targetVelocity.z)).magnitude);
             velocity = new Vector3(horizontalSpeed.x+aerialMoveVelocity.x, verticalSpeed, horizontalSpeed.y+aerialMoveVelocity.y);
             return;
@@ -161,9 +159,9 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             if (targetVelocity.magnitude > velocity.magnitude&&Vector3.Angle(velocity,targetVelocity)<45)
-                accelaration = playerStats.accelaration;
+                accelaration = PlayerStats.accelaration;
             else
-                accelaration = playerStats.stopAccelaration;
+                accelaration = PlayerStats.stopAccelaration;
         }
         velocity = Vector3.Lerp(velocity, targetVelocity, accelaration/(velocity-targetVelocity).magnitude * Time.deltaTime);
         if (isJumping)
@@ -193,12 +191,12 @@ public class PlayerMovement : MonoBehaviour
         groundAngle = Vector3.Angle(Vector3.up, groundNormal);
     }
 
-    //sets jump velocity and sets is jumping to true
+    //sets jump velocity and sets isJumping to true
     private void Jump()
     {
         if (characterController.isGrounded && groundAngle < maxWalkAngle)
         {
-            jumpVelocity = Mathf.Sqrt(2 * g * playerStats.jumpHeight);
+            jumpVelocity = Mathf.Sqrt(2 * g * PlayerStats.jumpHeight);
             isJumping = true;
         }
     }
@@ -207,9 +205,9 @@ public class PlayerMovement : MonoBehaviour
     private void RunToggle(bool run)
     {
         if (run)
-            moveSpeed = playerStats.runSpeed;
+            moveSpeed = PlayerStats.runSpeed;
         else
-            moveSpeed = playerStats.walkSpeed;
+            moveSpeed = PlayerStats.walkSpeed;
     }
 
     //rotate character to movement direction
@@ -218,13 +216,13 @@ public class PlayerMovement : MonoBehaviour
         float control = 1;
         if (!characterController.isGrounded)
         {
-            control = playerStats.arealControl;
+            control = PlayerStats.arealControl;
         }
-        transform.forward = Vector3.Slerp(transform.forward, new Vector3(moveDirection.x, 0, moveDirection.z).normalized,playerStats.turnSpeed*Time.deltaTime);
+        transform.forward = Vector3.Slerp(transform.forward, new Vector3(moveDirection.x, 0, moveDirection.z).normalized,PlayerStats.turnSpeed*Time.deltaTime);
  
         accelerationVector = body.transform.InverseTransformDirection(accelerationVector);
         body.transform.rotation = Quaternion.Euler(body.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, body.transform.rotation.eulerAngles.z);
-        body.transform.rotation = Quaternion.Lerp(body.transform.rotation, Quaternion.Euler(new Vector3(accelerationVector.z*playerStats.tiltFactor, body.transform.rotation.eulerAngles.y, -accelerationVector.x*playerStats.tiltFactor)), playerStats.tiltSpeed * Time.deltaTime);
+        body.transform.rotation = Quaternion.Lerp(body.transform.rotation, Quaternion.Euler(new Vector3(accelerationVector.z*PlayerStats.tiltFactor, body.transform.rotation.eulerAngles.y, -accelerationVector.x*PlayerStats.tiltFactor)), PlayerStats.tiltSpeed * Time.deltaTime);
     }
 
     //draw debug lines 

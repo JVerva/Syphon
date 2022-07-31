@@ -32,7 +32,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""7b26e387-4b4f-41a3-ad7a-ef2f630bfd8e"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -42,7 +42,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""id"": ""10cdd4cc-6b1c-4ac0-ae05-03364906956f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -62,33 +62,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""1d26f1a0-cd18-4736-aa6d-9bd00d2492de"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""b3df3d75-4e6f-4173-a8dd-3dc926016701"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Block"",
-                    ""type"": ""Button"",
-                    ""id"": ""b7681ecb-cd31-424e-8461-b778f887aa06"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -104,7 +77,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""WASD"",
                     ""id"": ""3a31a702-6346-4637-b399-d0dab9039ea9"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -179,21 +152,47 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerCombat"",
+            ""id"": ""4732f31c-fc3a-4982-b171-a4900f75e461"",
+            ""actions"": [
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e94291d-3269-4bd8-ac72-3a83e2545d6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a8e63e7-90a1-4993-97cd-aee073eea643"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""128056b6-6493-4c9e-80ff-998f9c84d8da"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""670716b4-2a70-43fe-a05f-669d006396cc"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""500722fd-274e-4c13-b65a-a73f8c3e58aa"",
+                    ""id"": ""ab155a39-b9e2-4955-8b63-2653dd8843a8"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -201,15 +200,108 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerCamera"",
+            ""id"": ""153495dc-7f89-45d0-b843-491c578faa3c"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""64e41ebb-298e-46fc-8629-6d6a2b1ff399"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""87a59a83-d1a8-4605-9564-e37f75246d10"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""272ca529-e3bb-44cf-9a36-69b1514869d0"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""33378909-e7f5-4e28-8815-887d9f56b642"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Block"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""300345f8-a695-480b-ac9a-51af41b54e41"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""c0f46b66-ee85-4371-b5d3-9ec3652be9ba"",
+            ""actions"": [
+                {
+                    ""name"": ""ToggleInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fd0490f-1858-4da7-add7-f8eacec1e6d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8491c5c9-6aa1-4d0f-8151-e1fd5c49e0e5"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Misc"",
+            ""id"": ""a78ee27a-0c6b-4248-b37e-587bad6f85fc"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a9fb6e1-e1e8-4646-8390-c404bf565cf3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cf7461f8-783a-412e-a33b-1d83160e8a0d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -224,9 +316,20 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_Run = m_PlayerMovement.FindAction("Run", throwIfNotFound: true);
         m_PlayerMovement_Crouch = m_PlayerMovement.FindAction("Crouch", throwIfNotFound: true);
-        m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
-        m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
-        m_PlayerMovement_Block = m_PlayerMovement.FindAction("Block", throwIfNotFound: true);
+        // PlayerCombat
+        m_PlayerCombat = asset.FindActionMap("PlayerCombat", throwIfNotFound: true);
+        m_PlayerCombat_Block = m_PlayerCombat.FindAction("Block", throwIfNotFound: true);
+        m_PlayerCombat_Attack = m_PlayerCombat.FindAction("Attack", throwIfNotFound: true);
+        // PlayerCamera
+        m_PlayerCamera = asset.FindActionMap("PlayerCamera", throwIfNotFound: true);
+        m_PlayerCamera_Look = m_PlayerCamera.FindAction("Look", throwIfNotFound: true);
+        m_PlayerCamera_Scroll = m_PlayerCamera.FindAction("Scroll", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_ToggleInventory = m_UI.FindAction("ToggleInventory", throwIfNotFound: true);
+        // Misc
+        m_Misc = asset.FindActionMap("Misc", throwIfNotFound: true);
+        m_Misc_Interact = m_Misc.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,9 +393,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_Jump;
     private readonly InputAction m_PlayerMovement_Run;
     private readonly InputAction m_PlayerMovement_Crouch;
-    private readonly InputAction m_PlayerMovement_Interact;
-    private readonly InputAction m_PlayerMovement_Attack;
-    private readonly InputAction m_PlayerMovement_Block;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -301,9 +401,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputAction @Run => m_Wrapper.m_PlayerMovement_Run;
         public InputAction @Crouch => m_Wrapper.m_PlayerMovement_Crouch;
-        public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
-        public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
-        public InputAction @Block => m_Wrapper.m_PlayerMovement_Block;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -325,15 +422,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Crouch.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCrouch;
-                @Interact.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
-                @Attack.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAttack;
-                @Block.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBlock;
-                @Block.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBlock;
-                @Block.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBlock;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -350,27 +438,181 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @Block.started += instance.OnBlock;
-                @Block.performed += instance.OnBlock;
-                @Block.canceled += instance.OnBlock;
             }
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // PlayerCombat
+    private readonly InputActionMap m_PlayerCombat;
+    private IPlayerCombatActions m_PlayerCombatActionsCallbackInterface;
+    private readonly InputAction m_PlayerCombat_Block;
+    private readonly InputAction m_PlayerCombat_Attack;
+    public struct PlayerCombatActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerCombatActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Block => m_Wrapper.m_PlayerCombat_Block;
+        public InputAction @Attack => m_Wrapper.m_PlayerCombat_Attack;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerCombat; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerCombatActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerCombatActions instance)
+        {
+            if (m_Wrapper.m_PlayerCombatActionsCallbackInterface != null)
+            {
+                @Block.started -= m_Wrapper.m_PlayerCombatActionsCallbackInterface.OnBlock;
+                @Block.performed -= m_Wrapper.m_PlayerCombatActionsCallbackInterface.OnBlock;
+                @Block.canceled -= m_Wrapper.m_PlayerCombatActionsCallbackInterface.OnBlock;
+                @Attack.started -= m_Wrapper.m_PlayerCombatActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerCombatActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerCombatActionsCallbackInterface.OnAttack;
+            }
+            m_Wrapper.m_PlayerCombatActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Block.started += instance.OnBlock;
+                @Block.performed += instance.OnBlock;
+                @Block.canceled += instance.OnBlock;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+            }
+        }
+    }
+    public PlayerCombatActions @PlayerCombat => new PlayerCombatActions(this);
+
+    // PlayerCamera
+    private readonly InputActionMap m_PlayerCamera;
+    private IPlayerCameraActions m_PlayerCameraActionsCallbackInterface;
+    private readonly InputAction m_PlayerCamera_Look;
+    private readonly InputAction m_PlayerCamera_Scroll;
+    public struct PlayerCameraActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerCameraActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_PlayerCamera_Look;
+        public InputAction @Scroll => m_Wrapper.m_PlayerCamera_Scroll;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerCamera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerCameraActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerCameraActions instance)
+        {
+            if (m_Wrapper.m_PlayerCameraActionsCallbackInterface != null)
+            {
+                @Look.started -= m_Wrapper.m_PlayerCameraActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerCameraActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerCameraActionsCallbackInterface.OnLook;
+                @Scroll.started -= m_Wrapper.m_PlayerCameraActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_PlayerCameraActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_PlayerCameraActionsCallbackInterface.OnScroll;
+            }
+            m_Wrapper.m_PlayerCameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
+            }
+        }
+    }
+    public PlayerCameraActions @PlayerCamera => new PlayerCameraActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_ToggleInventory;
+    public struct UIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToggleInventory => m_Wrapper.m_UI_ToggleInventory;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @ToggleInventory.started -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleInventory;
+                @ToggleInventory.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleInventory;
+                @ToggleInventory.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleInventory;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ToggleInventory.started += instance.OnToggleInventory;
+                @ToggleInventory.performed += instance.OnToggleInventory;
+                @ToggleInventory.canceled += instance.OnToggleInventory;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
+
+    // Misc
+    private readonly InputActionMap m_Misc;
+    private IMiscActions m_MiscActionsCallbackInterface;
+    private readonly InputAction m_Misc_Interact;
+    public struct MiscActions
+    {
+        private @PlayerInput m_Wrapper;
+        public MiscActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Misc_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Misc; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MiscActions set) { return set.Get(); }
+        public void SetCallbacks(IMiscActions instance)
+        {
+            if (m_Wrapper.m_MiscActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_MiscActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_MiscActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_MiscActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_MiscActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public MiscActions @Misc => new MiscActions(this);
     public interface IPlayerMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IPlayerCombatActions
+    {
         void OnBlock(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IPlayerCameraActions
+    {
+        void OnLook(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnToggleInventory(InputAction.CallbackContext context);
+    }
+    public interface IMiscActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
