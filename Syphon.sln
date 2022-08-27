@@ -1,27 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{0caab8e2-94bf-6745-f734-31c9ca5a4a68}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{c108f898-5226-4b02-a266-9acfe2e411e5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.UI", "UnityEditor.UI.csproj", "{7407703d-fad2-3dfc-fad8-e7387045b7e0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Sprite.Editor", "Unity.2D.Sprite.Editor.csproj", "{3c3e39e5-ad98-28c9-a03b-8aa691448c03}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{98F808C1-2652-024B-A266-9ACFE2E411E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0caab8e2-94bf-6745-f734-31c9ca5a4a68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0caab8e2-94bf-6745-f734-31c9ca5a4a68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{c108f898-5226-4b02-a266-9acfe2e411e5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{c108f898-5226-4b02-a266-9acfe2e411e5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7407703d-fad2-3dfc-fad8-e7387045b7e0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7407703d-fad2-3dfc-fad8-e7387045b7e0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3c3e39e5-ad98-28c9-a03b-8aa691448c03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3c3e39e5-ad98-28c9-a03b-8aa691448c03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F808C1-2652-024B-A266-9ACFE2E411E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F808C1-2652-024B-A266-9ACFE2E411E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F808C1-2652-024B-A266-9ACFE2E411E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F808C1-2652-024B-A266-9ACFE2E411E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

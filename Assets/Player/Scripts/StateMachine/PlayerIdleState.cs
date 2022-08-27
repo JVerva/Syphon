@@ -7,7 +7,7 @@ public class PlayerIdleState : PlayerState
     public PlayerIdleState(PlayerStateMachine context, PlayerStateFactory factory, bool isRootState) : base(context, factory, isRootState) { }
     protected override void CheckSwitchState()
     {
-        if(_context.IsMovePressed){
+        if(_context.IsMovePressed && _context.IsGrounded){
             SwitchState(_factory.getWalkState());
         }
     }

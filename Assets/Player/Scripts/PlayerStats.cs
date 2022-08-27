@@ -17,4 +17,5 @@ public static class PlayerStats
     public static float interactionReach = 5;
     public static float tiltFactor = 1 / 2;
     public static float tiltSpeed = 3;
+    public static float maxWalkAngle = 45;
 }

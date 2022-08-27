@@ -228,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
     //draw debug lines 
     private void DrawDebugLines()
     {
-        //Debug.DrawLine(transform.position + Vector3.up, transform.position + targetVelocity*2 + Vector3.up, Color.green, 0);
+        Debug.DrawLine(transform.position + Vector3.up, transform.position + targetVelocity*2 + Vector3.up, Color.green, 0);
         Debug.DrawLine(transform.position + Vector3.up, transform.position + velocity*2 + Vector3.up, Color.green, 0);
         Debug.DrawLine(transform.position + Vector3.up, transform.position + targetGravityVelocity/4 + Vector3.up, Color.red, 0);
     }

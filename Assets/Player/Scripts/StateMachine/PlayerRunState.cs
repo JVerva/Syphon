@@ -18,12 +18,12 @@ public class PlayerRunState : PlayerState
 
     protected override void EnterState()
     {
-        
+        _context.TargetMoveSpeed = PlayerStats.runSpeed;
     }
 
     protected override void ExitState()
     {
-        
+        _context.TargetMoveSpeed = 0f;
     }
 
     protected override void InitializeSubState()
